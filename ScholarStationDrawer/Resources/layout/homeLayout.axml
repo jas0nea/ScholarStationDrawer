@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#B6B6B6">
+    <Button
+        android:text="Create Tutor Session"
+        android:layout_width="match_parent"
+        android:layout_height="73.5dp"
+        android:layout_margin="10dp"
+        android:id="@+id/CreateTutorSession"
+        android:background="#ff039be5" />
+    <Button
+        android:text="Create Study Session"
+        android:layout_width="match_parent"
+        android:layout_height="73.0dp"
+        android:layout_margin="10dp"
+        android:id="@+id/CreateStudySession"
+        android:layout_below="@id/CreateTutorSession"
+        android:background="#ff43a047" />
+    <Button
+        android:text="Profile"
+        android:layout_width="match_parent"
+        android:layout_height="75.0dp"
+        android:layout_margin="10dp"
+        android:id="@+id/ProfileButton"
+        android:layout_below="@id/CreateStudySession"
+        android:background="#ff039be5" />
+</RelativeLayout>
