@@ -29,50 +29,50 @@ namespace ScholarStationDrawer
 
 			// Attach item selected handler to navigation view
 			navigationView = FindViewById<NavigationView>(Resource.Id.nav_view);
-			navigationView.NavigationItemSelected += (sender, e) => {
-				e.MenuItem.SetChecked(true);
-				var ft = FragmentManager.BeginTransaction ();
-				ft.AddToBackStack (null);
-				switch(e.MenuItem.ItemId)
-				{
-				case Resource.Id.nav_home:
-					ft.Replace (Resource.Id.FragmentLayout, new homeFragment ()); 
-					ft.AddToBackStack (null);
-					ft.Commit ();
-					break;
-				case Resource.Id.nav_profile:
-					ft.Replace (Resource.Id.FragmentLayout, new studentProfileFrag ());
-					ft.AddToBackStack (null);
-					ft.Commit ();
-					break;
-				case Resource.Id.nav_study:
-					ft.Replace (Resource.Id.FragmentLayout, new studySessionFrag ());
-					ft.AddToBackStack (null);
-					ft.Commit ();
-					break;
-				}
-					
-
-				drawerLayout.CloseDrawers();
-
-			};
+			navigationView.NavigationItemSelected += NavigationView_NavigationItemSelected;
 
 			var drawerToggle = new ActionBarDrawerToggle (this, drawerLayout, toolbar, Resource.String.open_drawer, Resource.String.close_drawer);
 			drawerLayout.SetDrawerListener (drawerToggle);
 			drawerToggle.SyncState ();
-				
-		}
-		public override bool OnOptionsItemSelected(IMenuItem item)
-		{
-			switch (item.ItemId) 
-			{
-			case Android.Resource.Id.Home:
-				drawerLayout.OpenDrawer (Android.Support.V4.View.GravityCompat.Start);
-				return true;
-			}
-			return base.OnOptionsItemSelected(item);
-		}
 
+			var ft = FragmentManager.BeginTransaction ();
+			ft.AddToBackStack (null);
+			ft.Add (Resource.Id.FragmentLayout, new homeFragment ());
+			ft.Commit ();
+
+			}
+
+		void NavigationView_NavigationItemSelected (object sender, NavigationView.NavigationItemSelectedEventArgs e)
+		{
+			var ft = FragmentManager.BeginTransaction ();
+			ft.AddToBackStack (null);
+			switch (e.MenuItem.ItemId) {
+			case Resource.Id.nav_home:
+				ft.Replace (Resource.Id.FragmentLayout, new homeFragment ());
+				ft.AddToBackStack (null);
+				ft.Commit ();
+				break;
+			case Resource.Id.nav_profile:
+				ft.Replace (Resource.Id.FragmentLayout, new studentProfileFrag ());
+				ft.AddToBackStack (null);
+				ft.Commit ();
+				break;
+			case Resource.Id.nav_study:
+				ft.Replace (Resource.Id.FragmentLayout, new studySessionFrag ());
+				ft.AddToBackStack (null);
+				ft.Commit ();
+				break;
+			}
+			drawerLayout.CloseDrawers();
+		}
+		public override void OnBackPressed ()
+		{
+			if(FragmentManager.BackStackEntryCount!= 0) {
+				FragmentManager.PopBackStack ();// fragmentManager.popBackStack();
+			} else {
+				base.OnBackPressed ();
+			}  
+		}
 	}
 }
 
