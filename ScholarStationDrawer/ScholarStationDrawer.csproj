@@ -63,6 +63,8 @@
     <Compile Include="homeFragment.cs" />
     <Compile Include="studentProfileFrag.cs" />
     <Compile Include="studySessionFrag.cs" />
+    <Compile Include="datePicker.cs" />
+    <Compile Include="timePicker.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -91,6 +93,7 @@
     <AndroidResource Include="Resources\layout\homeLayout.axml" />
     <AndroidResource Include="Resources\layout\studentProfileLayout.axml" />
     <AndroidResource Include="Resources\layout\studySessionLayout.axml" />
+    <AndroidResource Include="Resources\layout\calendarLayout.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />

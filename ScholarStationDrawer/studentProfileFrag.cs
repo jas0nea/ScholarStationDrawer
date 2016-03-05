@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 
 using Android.App;
 using Android.Content;
@@ -20,6 +21,8 @@ namespace ScholarStationDrawer
 		{
 			base.OnCreate (savedInstanceState);
 
+
+
 			// Create your fragment here
 		}
 
@@ -28,6 +31,11 @@ namespace ScholarStationDrawer
 			// Use this to return your custom view for this Fragment
 			// return inflater.Inflate(Resource.Layout.YourFragment, container, false);
 			View view = inflater.Inflate(Resource.Layout.studentProfileLayout, container, false);
+			TextView firstname = view.FindViewById<TextView> (Resource.Id.StudentFName);
+			var path = System.Environment.GetFolderPath (System.Environment.SpecialFolder.Personal);
+			var filename = Path.Combine (path, "test.txt");
+			var fname = File.ReadAllText (filename);
+			firstname.Text = fname;
 			return view;
 		}
 	}
